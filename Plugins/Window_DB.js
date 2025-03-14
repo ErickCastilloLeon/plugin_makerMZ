@@ -2,7 +2,11 @@
 // WindowData.js
 //=============================================================================
 
+<<<<<<< HEAD:Plugins/Window_DB.js
 const Window_DB = {
+=======
+const WindowDataAPI = {
+>>>>>>> origin/main:Plugins/API_window.js
     // Tamaño total de la imagen
     imageWidth: 192,
     imageHeight: 192,
