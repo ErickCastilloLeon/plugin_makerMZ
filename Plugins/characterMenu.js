@@ -1,11 +1,11 @@
 (() => {
     // Verificar que el plugin de la base de datos esté cargado
-    if (!window.charactersDatabaseAPI) {
-        throw new Error("El plugin 'badaHPK' debe cargarse antes que 'CodexMenu'.");
+    if (!window.characters_DB) {
+        throw new Error("El plugin 'character_DB' debe cargarse antes que 'CodexMenu'.");
     }
 
     // Usar las funciones del plugin de la base de datos
-    const charactersDatabaseAPI = window.charactersDatabaseAPI;
+    const characters_DB = window.characters_DB;
 
     // Alias seguro para createCommandWindow
     const _Scene_Menu_createCommandWindow = Scene_Menu.prototype.createCommandWindow;
@@ -161,7 +161,7 @@
         this.characterSlotsDispo = [];
 
         // Obtener todos los personajes de la base de datos
-        const allCharacters = charactersDatabaseAPI.getAllCharacters();
+        const allCharacters = characters_DB.getAllCharacters();
 
         // Crear casillas para los personajes
         allCharacters.forEach((characterData, index) => {
@@ -192,7 +192,7 @@
 
         if (characterData) {
             // Obtener la información del sprite
-            const spriteInfo = charactersDatabaseAPI.getCharacterSprite(characterData);
+            const spriteInfo = characters_DB.getCharacterSprite(characterData);
 
             // Crear el sprite del personaje
             const sprite = new Sprite(ImageManager.loadCharacter(characterData.sprite));
@@ -264,7 +264,7 @@
 
     Scene_CodexMenu.prototype.getCharacterDataForSlotDispo = function (index) {
         // Obtener todos los personajes de la base de datos
-        const allCharacters = charactersDatabaseAPI.getAllCharacters();
+        const allCharacters = characters_DB.getAllCharacters();
 
         // Devolver el personaje en el índice especificado
         return allCharacters[index] || null;
@@ -317,7 +317,7 @@
     // --------------- Actualizar la descripción del contrato ---------------
     Scene_CodexMenu.prototype.updateDescripcionContrato = function () {
         const selectedCharacterId = $gameVariables.value(299);
-        const characterData = charactersDatabaseAPI.getCharacterByActorId(selectedCharacterId);
+        const characterData = characters_DB.getCharacterByActorId(selectedCharacterId);
 
         this._descripcionText.bitmap.clear();
         this._descripcionText.bitmap.fontSize = 14;

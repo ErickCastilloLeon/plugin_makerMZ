@@ -214,7 +214,7 @@
     ];
 
     // Objeto de utilidades para interactuar con la base de datos
-    const charactersDatabaseAPI = {
+    const characters_DB = {
         getCharacterByActorId: function (actorId) {
             return charactersData.find(character => character.actorId === actorId) || null;
         },
@@ -285,5 +285,5 @@
 
     // Exponer la base de datos y las utilidades en el objeto global `window`
     window.charactersData = charactersData;
-    window.charactersDatabaseAPI = charactersDatabaseAPI;
+    window.characters_DB = characters_DB;
 })();

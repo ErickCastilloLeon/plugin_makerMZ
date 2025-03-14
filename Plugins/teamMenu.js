@@ -1,12 +1,12 @@
 (() => {
     // Verificar que el plugin de la base de datos esté cargado
-    if (!window.charactersDatabaseAPI) {
+    if (!window.characters_DB) {
         throw new Error("El plugin 'characterBada_HPK' debe cargarse antes que 'SistemaDeTeamMenu'.");
     }
 
     // Usar las funciones del plugin de la base de datos
-    const charactersDatabaseAPI = window.charactersDatabaseAPI;
-    const WindowDataAPI = window.WindowDataAPI;
+    const characters_DB = window.characters_DB;
+    const Window_DB = window.Window_DB;
 
     // Alias seguro para createCommandWindow
     const _Scene_Menu_createCommandWindow = Scene_Menu.prototype.createCommandWindow;
@@ -75,14 +75,10 @@
         section.x = 0;
         section.y = 0;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        Window_DB.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando Window_DB
+        Window_DB.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando Window_DB
+        Window_DB.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando Window_DB
 
         // Título de la sección
         const titleActivos = new Sprite(new Bitmap(500, 35));
@@ -115,17 +111,10 @@
         section.x = 0;
         section.y = 360;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar el fondo usando WindowDataAPI
-        WindowDataAPI.drawBackground(section.bitmap, windowImage);
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        Window_DB.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando Window_DB
+        Window_DB.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando Window_DB
+        Window_DB.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando Window_DB
 
         // Título de la sección
         const titleDisponibles = new Sprite(new Bitmap(345, 35));
@@ -166,14 +155,10 @@
         section.x = 600;
         section.y = 0;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        Window_DB.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando Window_DB
+        Window_DB.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando Window_DB
+        Window_DB.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando Window_DB
 
         // Título de la sección
         const title = new Sprite(new Bitmap(345, 35));
@@ -193,14 +178,10 @@
         section.x = 400;
         section.y = 360;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        Window_DB.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando Window_DB
+        Window_DB.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando Window_DB
+        Window_DB.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando Window_DB
 
         // Título de la sección
         const title = new Sprite(new Bitmap(345, 35));
@@ -295,7 +276,7 @@
         this.characterSlotsDispo = [];
 
         // Obtener todos los personajes de la base de datos
-        const allCharacters = charactersDatabaseAPI.getAllCharacters();
+        const allCharacters = characters_DB.getAllCharacters();
 
         // Obtener los miembros actuales del equipo
         const partyMembers = $gameParty.members();
@@ -336,7 +317,7 @@
 
         if (characterData) {
             // Obtener la información del sprite
-            const spriteInfo = charactersDatabaseAPI.getCharacterSprite(characterData);
+            const spriteInfo = characters_DB.getCharacterSprite(characterData);
 
             // Crear el sprite del personaje
             const sprite = new Sprite(ImageManager.loadCharacter(characterData.sprite));
@@ -387,11 +368,11 @@
 
         if (character) {
             // Obtener los datos del personaje desde la base de datos
-            const characterData = charactersDatabaseAPI.getCharacterByActorId(character.actorId());
+            const characterData = characters_DB.getCharacterByActorId(character.actorId());
 
             if (characterData) {
                 // Obtener la información del sprite
-                const spriteInfo = charactersDatabaseAPI.getCharacterSprite(characterData);
+                const spriteInfo = characters_DB.getCharacterSprite(characterData);
 
                 // Crear el sprite del personaje
                 const sprite = new Sprite(ImageManager.loadCharacter(characterData.sprite));
@@ -427,7 +408,7 @@
 
         // Filtrar personajes que tienen un interruptor asignado y que esté activado
         const filteredMembers = members.filter(member => {
-            const characterData = charactersDatabaseAPI.getCharacterByActorId(member.actorId());
+            const characterData = characters_DB.getCharacterByActorId(member.actorId());
             if (characterData && characterData.switchId !== undefined) {
                 return $gameSwitches.value(characterData.switchId); // Verificar si el interruptor está activado
             }
@@ -533,7 +514,7 @@
 
     Scene_TeamMenu_HPK.prototype.getCharacterDataForSlotDispo = function (index) {
         // Obtener todos los personajes de la base de datos
-        const allCharacters = charactersDatabaseAPI.getAllCharacters();
+        const allCharacters = characters_DB.getAllCharacters();
 
         // Obtener los miembros actuales del equipo
         const partyMembers = $gameParty.members();
@@ -764,9 +745,9 @@
         this.characterSlots.forEach((slot, index) => {
             const character = this.getCharacterForSlot(index);
             if (character) {
-                const characterData = charactersDatabaseAPI.getCharacterByActorId(character.actorId());
+                const characterData = characters_DB.getCharacterByActorId(character.actorId());
                 if (characterData) {
-                    const spriteInfo = charactersDatabaseAPI.getCharacterSprite(characterData);
+                    const spriteInfo = characters_DB.getCharacterSprite(characterData);
                     const sprite = new Sprite(ImageManager.loadCharacter(characterData.sprite));
                     sprite.setFrame(spriteInfo.spriteX + spriteInfo.frameX, spriteInfo.spriteY + spriteInfo.frameY, spriteInfo.frameWidth, spriteInfo.frameHeight);
                     const scale = 48 / spriteInfo.frameHeight;
@@ -787,9 +768,9 @@
         });
 
         this.characterSlotsDispo.forEach((slot, index) => {
-            const characterData = charactersDatabaseAPI.getAllCharacters()[index];
+            const characterData = characters_DB.getAllCharacters()[index];
             if (characterData) {
-                const spriteInfo = charactersDatabaseAPI.getCharacterSprite(characterData);
+                const spriteInfo = characters_DB.getCharacterSprite(characterData);
                 const sprite = new Sprite(ImageManager.loadCharacter(characterData.sprite));
                 sprite.setFrame(spriteInfo.spriteX + spriteInfo.frameX, spriteInfo.spriteY + spriteInfo.frameY, spriteInfo.frameWidth, spriteInfo.frameHeight);
                 const scale = 48 / spriteInfo.frameHeight;
@@ -811,7 +792,7 @@
     // --------------- Actualizar la descripción del contrato ---------------
     Scene_TeamMenu_HPK.prototype.updateDescripcionPersonaje = function () {
         const selectedCharacterId = $gameVariables.value(299);
-        const characterData = charactersDatabaseAPI.getCharacterByActorId(selectedCharacterId);
+        const characterData = characters_DB.getCharacterByActorId(selectedCharacterId);
 
         this._descripcionText.bitmap.clear();
         this._descripcionText.bitmap.fontSize = 14;

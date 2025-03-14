@@ -2,14 +2,7 @@
 // WindowData.js
 //=============================================================================
 
-/*:
- * @target MZ
- * @plugindesc Plugin para almacenar y acceder a los datos de la imagen Window.png.
- * @author TuNombre
- * @help Este plugin proporciona una API para acceder a las secciones de la imagen Window.png.
- */
-
-const WindowDataAPI = {
+const Window_DB = {
     // Tamaño total de la imagen
     imageWidth: 192,
     imageHeight: 192,
@@ -67,6 +60,9 @@ const WindowDataAPI = {
         const backgroundSection = this.getSection('background');
         const tilesSection = this.getSection('tiles');
 
+        // Establecer la opacidad al 50%
+        bitmap.context.globalAlpha = 1.0;
+
         // Dibujar el fondo general (sección 1)
         bitmap.blt(windowImage, backgroundSection.x, backgroundSection.y, backgroundSection.width, backgroundSection.height, 0, 0, bitmap.width, bitmap.height);
 
@@ -76,6 +72,9 @@ const WindowDataAPI = {
                 bitmap.blt(windowImage, tilesSection.x, tilesSection.y, tilesSection.width, tilesSection.height, x, y, tilesSection.width, tilesSection.height);
             }
         }
+
+        // Restaurar la opacidad al valor por defecto (100%)
+        bitmap.context.globalAlpha = 1.0;
     },
 
     // Función para dibujar bordes sin superponer los iconos esquineros
@@ -146,4 +145,4 @@ const WindowDataAPI = {
 };
 
 // Exportar la API para su uso en otros scripts
-window.WindowDataAPI = WindowDataAPI;
+window.Window_DB = Window_DB;
