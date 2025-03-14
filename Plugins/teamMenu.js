@@ -75,14 +75,10 @@
         section.x = 0;
         section.y = 0;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        WindowDataAPI.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando WindowDataAPI
+        WindowDataAPI.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando WindowDataAPI
+        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando WindowDataAPI
 
         // Título de la sección
         const titleActivos = new Sprite(new Bitmap(500, 35));
@@ -115,17 +111,10 @@
         section.x = 0;
         section.y = 360;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar el fondo usando WindowDataAPI
-        WindowDataAPI.drawBackground(section.bitmap, windowImage);
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        WindowDataAPI.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando WindowDataAPI
+        WindowDataAPI.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando WindowDataAPI
+        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando WindowDataAPI
 
         // Título de la sección
         const titleDisponibles = new Sprite(new Bitmap(345, 35));
@@ -166,14 +155,10 @@
         section.x = 600;
         section.y = 0;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        WindowDataAPI.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando WindowDataAPI
+        WindowDataAPI.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando WindowDataAPI
+        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando WindowDataAPI
 
         // Título de la sección
         const title = new Sprite(new Bitmap(345, 35));
@@ -193,14 +178,10 @@
         section.x = 400;
         section.y = 360;
 
-        // Cargar la imagen Window.png
-        const windowImage = ImageManager.loadSystem('Window');
-
-        // Dibujar bordes usando WindowDataAPI
-        WindowDataAPI.drawBorders(section.bitmap, windowImage);
-
-        // Dibujar iconos esquineros usando WindowDataAPI
-        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);
+        const windowImage = ImageManager.loadSystem('Window');// Cargar la imagen Window.png
+        WindowDataAPI.drawBackground(section.bitmap, windowImage);// Dibujar el fondo usando WindowDataAPI
+        WindowDataAPI.drawBorders(section.bitmap, windowImage); // Dibujar bordes usando WindowDataAPI
+        WindowDataAPI.drawCornerIcons(section.bitmap, windowImage);// Dibujar iconos esquineros usando WindowDataAPI
 
         // Título de la sección
         const title = new Sprite(new Bitmap(345, 35));
